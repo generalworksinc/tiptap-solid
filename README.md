@@ -2,7 +2,12 @@
 
 TipTap integration with Solid.js.
 
-Forked from [vriteio/tiptap-solid](https://github.com/vriteio/tiptap-solid) with the following adjustments:
+## Repository Information
+
+**Original Repository**: [vriteio/tiptap-solid](https://github.com/vriteio/tiptap-solid)  
+**This Fork**: [project-opus/tiptap-solid](https://github.com/project-opus/tiptap-solid)
+
+This project is a fork of the original [vriteio/tiptap-solid](https://github.com/vriteio/tiptap-solid) repository, with additional enhancements and maintenance. The original project provides TipTap integration for Solid.js, and this fork extends it with the following adjustments:
 
 - Updated to latest TipTap v3 version
 - Migrated from Tippy.js to Floating UI for menu positioning
