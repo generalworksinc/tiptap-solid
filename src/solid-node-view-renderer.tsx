@@ -80,7 +80,13 @@ class SolidNodeView extends NodeView<
       decorations: this.decorations,
       selected: false,
       extension: this.extension,
-      getPos: () => this.getPos(),
+      getPos: () => {
+        const pos = this.getPos();
+        if (pos === undefined) {
+          throw new Error('getPos returned undefined. Node view may be destroyed.');
+        }
+        return pos;
+      },
       updateAttributes: (attributes = {}) => this.updateAttributes(attributes),
       deleteNode: () => this.deleteNode(),
     } as unknown as SolidNodeViewProps;

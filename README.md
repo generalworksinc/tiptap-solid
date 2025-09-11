@@ -4,7 +4,8 @@ TipTap integration with Solid.js.
 
 Forked from [vriteio/tiptap-solid](https://github.com/vriteio/tiptap-solid) with the following adjustments:
 
-- Updated to latest TipTap v2 version
+- Updated to latest TipTap v3 version
+- Migrated from Tippy.js to Floating UI for menu positioning
 - Switched rollup to tsup which uses esbuild backend
 - Switched to npm as the main package manager
 
@@ -25,7 +26,7 @@ Here are some examples of common use-cases:
 ### Creating the editor
 
 ```javascript
-import { SolidEditorContent, useEditor } from "@opus/tiptap-solid";
+import { SolidEditorContent, useEditor } from "@generalworks/tiptap-solid";
 
 // ...
 const editor = useEditor({
@@ -42,7 +43,7 @@ const editor = useEditor({
 ### Creating Solid-based Node Views
 
 ```javascript
-import { SolidNodeViewRenderer } from "@opus/tiptap-solid";
+import { SolidNodeViewRenderer } from "@generalworks/tiptap-solid";
 
 const CustomNode = Node.create({
   // ...
@@ -56,7 +57,7 @@ const CustomNode = Node.create({
 In the `CustomNodeView` component, you can access the Node's state, including attributes, options, etc.
 
 ```javascript
-import { NodeViewWrapper, useSolidNodeView } from "@opus/tiptap-solid";
+import { NodeViewWrapper, useSolidNodeView } from "@generalworks/tiptap-solid";
 
 const CustomNodeView = () => {
   const { state } = useSolidNodeView();
@@ -81,11 +82,8 @@ const CustomNodeView = () => {
 // Rendering
 <BubbleMenuWrapper
   editor={editor()}
-  tippyOptions={
-    {
-      // ...
-    }
-  }
+  offset={6}
+  placement="top"
   shouldShow={({ editor, state, view, from, to }) => {
     // ...
   }}
@@ -93,3 +91,21 @@ const CustomNodeView = () => {
   {/* Your menu */}
 </BubbleMenuWrapper>
 ```
+
+### Creating Floating Menu
+
+```javascript
+// Rendering
+<FloatingMenuWrapper
+  editor={editor()}
+  offset={6}
+  placement="top"
+  shouldShow={({ editor, state, view }) => {
+    // ...
+  }}
+>
+  {/* Your menu */}
+</FloatingMenuWrapper>
+```
+
+Note: In TipTap v3, we've migrated from Tippy.js to Floating UI. The `tippyOptions` prop is automatically converted to Floating UI options for backward compatibility.

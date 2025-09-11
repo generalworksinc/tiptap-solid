@@ -5,6 +5,7 @@ import {
 } from "@tiptap/extension-bubble-menu";
 import { Component, JSX, onMount } from "solid-js";
 import { nanoid } from "nanoid";
+import { offset } from "@floating-ui/dom";
 
 type BubbleMenuWrapperProps = Omit<
   BubbleMenuPluginProps,
@@ -13,6 +14,12 @@ type BubbleMenuWrapperProps = Omit<
   class?: string;
   children?: JSX.Element;
   shouldShow?: BubbleMenuPluginProps["shouldShow"];
+  // Backward compatibility for tippyOptions
+  tippyOptions?: {
+    offset?: number | [number, number];
+    placement?: string;
+    [key: string]: any;
+  };
 };
 
 const BubbleMenuWrapper: Component<BubbleMenuWrapperProps> = (props) => {
@@ -24,6 +31,16 @@ const BubbleMenuWrapper: Component<BubbleMenuWrapperProps> = (props) => {
     const container = getContainer();
 
     if (container) {
+      // Convert tippyOptions to Floating UI options for v3 compatibility
+      const floatingUIOptions = tippyOptions ? {
+        offset: tippyOptions.offset ? (Array.isArray(tippyOptions.offset) ? tippyOptions.offset[1] || 6 : tippyOptions.offset) : 6,
+        placement: tippyOptions.placement || 'top',
+        middleware: tippyOptions.offset ? [offset(Array.isArray(tippyOptions.offset) ? tippyOptions.offset[1] || 6 : tippyOptions.offset)] : [offset(6)],
+      } : {
+        offset: 6,
+        placement: 'top',
+      };
+
       editor.registerPlugin(
         BubbleMenuPlugin({
           editor,
@@ -36,7 +53,7 @@ const BubbleMenuWrapper: Component<BubbleMenuWrapperProps> = (props) => {
             return false;
           },
           element: container,
-          tippyOptions,
+          ...floatingUIOptions,
         })
       );
     }

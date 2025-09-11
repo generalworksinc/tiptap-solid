@@ -1,5 +1,5 @@
 {
-  "name": "@opus/tiptap-solid",
+  "name": "@generalworks/tiptap-solid",
   "version": "1.1.1",
   "description": "TipTap v2 integration for Solid.js",
   "type": "module",
@@ -38,21 +38,22 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@tiptap/extension-bubble-menu": "^2.23.0",
-    "@tiptap/extension-floating-menu": "^2.23.0",
+    "@tiptap/extension-bubble-menu": "^3.0.0",
+    "@tiptap/extension-floating-menu": "^3.0.0",
+    "@floating-ui/dom": "^1.6.0",
     "nanoid": "^5.0.7"
   },
   "devDependencies": {
-    "@tiptap/core": "^2.23.0",
-    "@tiptap/pm": "^2.23.0",
+    "@tiptap/core": "^3.0.0",
+    "@tiptap/pm": "^3.0.0",
     "esbuild-plugin-solid": "^0.6.0",
     "solid-js": "^1.8.20",
     "tsup": "^8.5.0",
     "typescript": "^5.5.4"
   },
   "peerDependencies": {
-    "@tiptap/core": "^2.23.0",
-    "@tiptap/pm": "^2.23.0",
+    "@tiptap/core": "^3.0.0",
+    "@tiptap/pm": "^3.0.0",
     "solid-js": "^1.8.20"
   }
 }
