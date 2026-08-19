@@ -1,8 +1,16 @@
-import { SolidEditor } from "./editor";
-import { SolidRenderer } from "./solid-renderer";
-import { createRef } from "./ref";
-import { Component, For, createEffect, on, onCleanup, JSX, splitProps } from "solid-js";
+import {
+  type Component,
+  createEffect,
+  For,
+  type JSX,
+  on,
+  onCleanup,
+  splitProps,
+} from "solid-js";
 import { Dynamic, Portal } from "solid-js/web";
+import type { SolidEditor } from "./editor";
+import { createRef } from "./ref";
+import type { SolidRenderer } from "./solid-renderer";
 
 interface PortalsProps {
   renderers: SolidRenderer[];
@@ -27,20 +35,21 @@ interface SolidEditorContentProps extends JSX.HTMLAttributes<HTMLDivElement> {
 }
 
 const SolidEditorContent: Component<SolidEditorContentProps> = (props) => {
-  const [getEditorContentContainer, setEditorContentContainer] = createRef<HTMLElement>();
+  const [getEditorContentContainer, setEditorContentContainer] =
+    createRef<HTMLElement>();
   const [, passedProps] = splitProps(props, ["editor"]);
 
   createEffect(
     on([() => props.editor], () => {
       const { editor } = props;
 
-      if (editor && editor.options.element) {
+      if (editor?.options.element instanceof Element) {
         const editorContentContainer = getEditorContentContainer();
 
         if (editorContentContainer) {
           editorContentContainer.append(...editor.options.element.childNodes);
           editor.setOptions({
-            element: editorContentContainer
+            element: editorContentContainer,
           });
         }
 
@@ -50,7 +59,7 @@ const SolidEditorContent: Component<SolidEditorContentProps> = (props) => {
           }
         }, 0);
       }
-    })
+    }),
   );
   onCleanup(() => {
     const { editor } = props;
@@ -61,19 +70,21 @@ const SolidEditorContent: Component<SolidEditorContentProps> = (props) => {
 
     if (!editor.isDestroyed) {
       editor.view.setProps({
-        nodeViews: {}
+        nodeViews: {},
       });
     }
 
-    if (!editor.options.element.firstChild) {
+    const editorElement = editor.options.element;
+
+    if (!(editorElement instanceof Element) || !editorElement.firstChild) {
       return;
     }
 
     const newElement = document.createElement("div");
 
-    newElement.append(...editor.options.element.childNodes);
+    newElement.append(...editorElement.childNodes);
     editor.setOptions({
-      element: newElement
+      element: newElement,
     });
   });
 

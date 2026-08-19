@@ -57,7 +57,13 @@ var BubbleMenuWrapper = (props) => {
 };
 
 // src/editor-content.tsx
-import { For, createEffect, on, onCleanup, splitProps } from "solid-js";
+import {
+  createEffect,
+  For,
+  on,
+  onCleanup,
+  splitProps
+} from "solid-js";
 import { Dynamic, Portal } from "solid-js/web";
 var Portals = (props) => {
   return <For each={props.renderers}>
@@ -74,7 +80,7 @@ var SolidEditorContent = (props) => {
   createEffect(
     on([() => props.editor], () => {
       const { editor } = props;
-      if (editor && editor.options.element) {
+      if (editor?.options.element instanceof Element) {
         const editorContentContainer = getEditorContentContainer();
         if (editorContentContainer) {
           editorContentContainer.append(...editor.options.element.childNodes);
@@ -100,11 +106,12 @@ var SolidEditorContent = (props) => {
         nodeViews: {}
       });
     }
-    if (!editor.options.element.firstChild) {
+    const editorElement = editor.options.element;
+    if (!(editorElement instanceof Element) || !editorElement.firstChild) {
       return;
     }
     const newElement = document.createElement("div");
-    newElement.append(...editor.options.element.childNodes);
+    newElement.append(...editorElement.childNodes);
     editor.setOptions({
       element: newElement
     });
