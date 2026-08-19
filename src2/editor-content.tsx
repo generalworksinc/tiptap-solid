@@ -34,7 +34,7 @@ const SolidEditorContent: Component<SolidEditorContentProps> = (props) => {
   createEffect(
     () => props.editor,
     (editor) => {
-      if (editor?.options.element) {
+      if (editor?.options.element instanceof Element) {
         const editorContentContainer = getEditorContentContainer();
 
         if (editorContentContainer) {
@@ -66,13 +66,15 @@ const SolidEditorContent: Component<SolidEditorContentProps> = (props) => {
         });
       }
 
-      if (!editor.options.element.firstChild) {
+      const editorElement = editor.options.element;
+
+      if (!(editorElement instanceof Element) || !editorElement.firstChild) {
         return;
       }
 
       const newElement = document.createElement("div");
 
-      newElement.append(...editor.options.element.childNodes);
+      newElement.append(...editorElement.childNodes);
       editor.setOptions({
         element: newElement,
       });

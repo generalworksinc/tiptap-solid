@@ -64,7 +64,7 @@ var w = () => {
 }), A = (e) => {
 	let [t, n] = w(), i = v(e, "editor");
 	return h(() => e.editor, (e) => {
-		if (e?.options.element) {
+		if (e?.options.element instanceof Element) {
 			let n = t();
 			n && (n.append(...e.options.element.childNodes), e.setOptions({ element: n })), setTimeout(() => {
 				e.isDestroyed || e.createNodeViews();
@@ -73,9 +73,11 @@ var w = () => {
 	}), y(() => {
 		let t = e.editor;
 		if (t) return () => {
-			if (t.isDestroyed || t.view.setProps({ nodeViews: {} }), !t.options.element.firstChild) return;
-			let e = document.createElement("div");
-			e.append(...t.options.element.childNodes), t.setOptions({ element: e });
+			t.isDestroyed || t.view.setProps({ nodeViews: {} });
+			let e = t.options.element;
+			if (!(e instanceof Element) || !e.firstChild) return;
+			let n = document.createElement("div");
+			n.append(...e.childNodes), t.setOptions({ element: n });
 		};
 	}), [(() => {
 		var e = O();
