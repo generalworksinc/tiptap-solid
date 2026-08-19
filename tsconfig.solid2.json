@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsxImportSource": "@solidjs/web",
+    "moduleResolution": "Bundler",
+    "paths": {
+      "solid-js": ["./node_modules/solid-js-v2"],
+      "solid-js/*": ["./node_modules/solid-js-v2/*"]
+    }
+  },
+  "include": ["./src2"],
+  "exclude": ["node_modules", "./dist"]
+}
