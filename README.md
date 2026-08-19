@@ -2,6 +2,14 @@
 
 TipTap integration with Solid.js.
 
+Solid 1 applications use the existing package root. Solid 2 applications use
+the dedicated entry, which exposes the same public API without changing the
+Solid 1 build:
+
+```ts
+import { SolidEditorContent, useEditor } from "@generalworks/tiptap-solid/solid2";
+```
+
 ## Repository Information
 
 **Original Repository**: [vriteio/tiptap-solid](https://github.com/vriteio/tiptap-solid)  
