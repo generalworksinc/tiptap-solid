@@ -63,7 +63,7 @@
     "@tiptap/pm": "3.30.2",
     "esbuild-plugin-solid": "^0.6.0",
     "solid-js": "^1.8.20",
-    "solid-js-v2": "npm:solid-js@2.0.0-rc.0",
+    "solid-js-v2": "npm:solid-js@2.0.0",
     "tsup": "^8.5.0",
     "typescript": "^5.5.4",
     "vite": "^8.1.5",
@@ -72,6 +72,12 @@
   "peerDependencies": {
     "@tiptap/core": "^3.0.0",
     "@tiptap/pm": "^3.0.0",
-    "solid-js": ">=1.8 <2 || >=2.0.0"
+    "solid-js": ">=1.8 <2 || >=2.0.0",
+    "@solidjs/web": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@solidjs/web": {
+      "optional": true
+    }
   }
 }

@@ -10,6 +10,10 @@ Solid 1 build:
 import { SolidEditorContent, useEditor } from "@generalworks/tiptap-solid/solid2";
 ```
 
+The Solid 2 entry needs `solid-js` 2.0.0 or later and `@solidjs/web` 2.x
+(an optional peer, so Solid 1 applications do not install it). It is built with
+the 2.0.0 compiler and does not run on the 2.0.0 release candidates.
+
 ## Repository Information
 
 **Original Repository**: [vriteio/tiptap-solid](https://github.com/vriteio/tiptap-solid)  
