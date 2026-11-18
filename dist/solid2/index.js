@@ -1,30 +1,30 @@
-import { Dynamic as e, Portal as t, className as n, createComponent as r, effect as i, insert as a, mergeProps as o, ref as s, spread as c, template as l } from "@solidjs/web";
-import { offset as u } from "@floating-ui/dom";
-import { BubbleMenuPlugin as d } from "@tiptap/extension-bubble-menu";
-import { nanoid as f } from "nanoid";
-import { For as p, createContext as m, createEffect as h, createMemo as g, createSignal as _, omit as v, onSettled as y, useContext as b } from "solid-js";
-import { Editor as x, NodeView as S } from "@tiptap/core";
-import { FloatingMenuPlugin as C } from "@tiptap/extension-floating-menu";
+import { Dynamic as e, Portal as t, className as n, createComponent as r, effect as i, insert as a, mergeProps as o, readShallow as s, ref as c, spread as l, template as u } from "@solidjs/web";
+import { offset as d } from "@floating-ui/dom";
+import { BubbleMenuPlugin as f } from "@tiptap/extension-bubble-menu";
+import { nanoid as p } from "nanoid";
+import { For as m, createContext as h, createEffect as g, createMemo as _, createSignal as v, omit as y, onSettled as b, useContext as x } from "solid-js";
+import { Editor as S, NodeView as C } from "@tiptap/core";
+import { FloatingMenuPlugin as w } from "@tiptap/extension-floating-menu";
 //#region src2/ref.ts
-var w = () => {
+var T = () => {
 	let e = null;
 	return [() => e, (t) => {
 		e = t;
 	}];
-}, T = /* @__PURE__ */ l("<div style=visibility:hidden>"), E = (e) => {
-	let [t, r] = w(), o = f();
-	y(() => {
+}, E = /* @__PURE__ */ u("<div style=visibility:hidden>"), D = (e) => {
+	let [t, r] = T(), o = p();
+	b(() => {
 		let { editor: n, shouldShow: r, tippyOptions: i } = e, a = t();
 		if (a) {
 			let e = i ? {
 				offset: i.offset ? Array.isArray(i.offset) ? i.offset[1] || 6 : i.offset : 6,
 				placement: i.placement || "top",
-				middleware: i.offset ? [u(Array.isArray(i.offset) ? i.offset[1] || 6 : i.offset)] : [u(6)]
+				middleware: i.offset ? [d(Array.isArray(i.offset) ? i.offset[1] || 6 : i.offset)] : [d(6)]
 			} : {
 				offset: 6,
 				placement: "top"
 			};
-			return n.registerPlugin(d({
+			return n.registerPlugin(f({
 				editor: n,
 				pluginKey: o,
 				shouldShow: (e) => r ? r(e) : !1,
@@ -33,16 +33,16 @@ var w = () => {
 			})), () => n.unregisterPlugin(o);
 		}
 	});
-	var c = T();
-	return s(() => r, c), a(c, () => e.children), i(() => e.class, (e, t) => {
-		n(c, e, t);
-	}), c;
-}, D = class extends x {
+	var l = E();
+	return c(() => r, l), a(l, () => e.children), i(() => s(e.class), (e, t) => {
+		n(l, e, t);
+	}), l;
+}, O = class extends S {
 	constructor(e) {
-		let [t, n] = _([]);
+		let [t, n] = v([]);
 		super(e), this.renderers = t, this.setRenderers = n;
 	}
-}, O = /* @__PURE__ */ l("<div>"), k = (n) => r(p, {
+}, k = /* @__PURE__ */ u("<div>"), A = (n) => r(m, {
 	get each() {
 		return n.renderers;
 	},
@@ -61,16 +61,16 @@ var w = () => {
 			});
 		}
 	})
-}), A = (e) => {
-	let [t, n] = w(), i = v(e, "editor");
-	return h(() => e.editor, (e) => {
+}), j = (e) => {
+	let [t, n] = T(), i = y(e, "editor");
+	return g(() => e.editor, (e) => {
 		if (e?.options.element instanceof Element) {
 			let n = t();
 			n && (n.append(...e.options.element.childNodes), e.setOptions({ element: n })), setTimeout(() => {
 				e.isDestroyed || e.createNodeViews();
 			}, 0);
 		}
-	}), y(() => {
+	}), b(() => {
 		let t = e.editor;
 		if (t) return () => {
 			t.isDestroyed || t.view.setProps({ nodeViews: {} });
@@ -80,25 +80,25 @@ var w = () => {
 			n.append(...e.childNodes), t.setOptions({ element: n });
 		};
 	}), [(() => {
-		var e = O();
-		return s(() => n, e), c(e, i, !1), e;
-	})(), r(k, { get renderers() {
+		var e = k();
+		return l(e, i, !1), c(() => n, e), e;
+	})(), r(A, { get renderers() {
 		return e.editor.renderers();
 	} })];
-}, j = /* @__PURE__ */ l("<div style=visibility:hidden>"), M = (e) => {
-	let [t, r] = w(), o = f();
-	y(() => {
+}, M = /* @__PURE__ */ u("<div style=visibility:hidden>"), N = (e) => {
+	let [t, r] = T(), o = p();
+	b(() => {
 		let { editor: n, shouldShow: r, tippyOptions: i } = e, a = t();
 		if (a) {
 			let e = i ? {
 				offset: i.offset ? Array.isArray(i.offset) ? i.offset[1] || 6 : i.offset : 6,
 				placement: i.placement || "top",
-				middleware: i.offset ? [u(Array.isArray(i.offset) ? i.offset[1] || 6 : i.offset)] : [u(6)]
+				middleware: i.offset ? [d(Array.isArray(i.offset) ? i.offset[1] || 6 : i.offset)] : [d(6)]
 			} : {
 				offset: 6,
 				placement: "top"
 			};
-			return n.registerPlugin(C({
+			return n.registerPlugin(w({
 				editor: n,
 				pluginKey: o,
 				shouldShow: r || null,
@@ -107,12 +107,12 @@ var w = () => {
 			})), () => n.unregisterPlugin(o);
 		}
 	});
-	var c = j();
-	return s(() => r, c), a(c, () => e.children), i(() => e.class, (e, t) => {
-		n(c, e, t);
-	}), c;
-}, N = (t) => {
-	let n = v(t, "ref");
+	var l = M();
+	return c(() => r, l), a(l, () => e.children), i(() => s(e.class), (e, t) => {
+		n(l, e, t);
+	}), l;
+}, P = (t) => {
+	let n = y(t, "ref");
 	return r(e, o(n, {
 		get component() {
 			return t.as || "div";
@@ -125,8 +125,8 @@ var w = () => {
 			};
 		}
 	}));
-}, P = m(), F = () => b(P), I = (t) => {
-	let { state: n } = F(), i = v(t, "ref");
+}, F = h(), I = () => x(F), L = (t) => {
+	let { state: n } = I(), i = y(t, "ref");
 	return r(e, o(i, {
 		get component() {
 			return t.as || "div";
@@ -142,15 +142,15 @@ var w = () => {
 			};
 		}
 	}));
-}, L = class {
+}, R = class {
 	constructor(e, { editor: t, state: n, as: r = "div" }) {
-		let [i, a] = _(() => n), o = document.createElement(r);
-		this.setState = a, this.state = i, this.element = o, this.component = e, this.id = f(), this.editor = t, this.editor.setRenderers((e) => [...e, this]);
+		let [i, a] = v(() => n), o = document.createElement(r);
+		this.setState = a, this.state = i, this.element = o, this.component = e, this.id = p(), this.editor = t, this.editor.setRenderers((e) => [...e, this]);
 	}
 	destroy() {
 		this.editor.setRenderers((e) => e.filter((e) => e.id !== this.id));
 	}
-}, R = class extends S {
+}, z = class extends C {
 	setSelectionListeners = [];
 	get dom() {
 		let e = this.renderer.element.firstElementChild;
@@ -175,11 +175,11 @@ var w = () => {
 			updateAttributes: (e = {}) => this.updateAttributes(e),
 			deleteNode: () => this.deleteNode()
 		}, n = (t) => {
-			let n = g(() => this.component), i = { state: g(() => ({
+			let n = _(() => this.component), i = { state: _(() => ({
 				onDragStart: this.onDragStart.bind(this),
 				...t.state
 			})) };
-			return r(P, {
+			return r(F, {
 				value: i,
 				get children() {
 					return r(e, { get component() {
@@ -188,7 +188,7 @@ var w = () => {
 				}
 			});
 		};
-		this.contentDOMElement = this.node.isLeaf ? null : document.createElement(this.node.isInline ? "span" : "div"), this.contentDOMElement && (this.contentDOMElement.style.whiteSpace = "inherit"), this.renderer = new L(n, {
+		this.contentDOMElement = this.node.isLeaf ? null : document.createElement(this.node.isInline ? "span" : "div"), this.contentDOMElement && (this.contentDOMElement.style.whiteSpace = "inherit"), this.renderer = new R(n, {
 			editor: this.editor,
 			state: t,
 			as: this.node.isInline ? "span" : "div"
@@ -242,14 +242,14 @@ var w = () => {
 			...e
 		})), this.maybeMoveContentDOM();
 	}
-}, z = (e, t) => (n) => {
+}, B = (e, t) => (n) => {
 	let { renderers: r, setRenderers: i } = n.editor;
-	return !r || !i ? {} : new R(e, n, t);
-}, B = (e = {}) => {
-	let t = new D(e), [n, r] = _(0), i = () => (n(), t), a = () => r((e) => e + 1);
-	return t.on("transaction", a), y(() => () => {
+	return !r || !i ? {} : new z(e, n, t);
+}, V = (e = {}) => {
+	let t = new O(e), [n, r] = v(0), i = () => (n(), t), a = () => r((e) => e + 1);
+	return t.on("transaction", a), b(() => () => {
 		t.off("transaction", a), t.destroy();
 	}), i;
 };
 //#endregion
-export { E as BubbleMenuWrapper, M as FloatingMenuWrapper, N as NodeViewContent, I as NodeViewWrapper, D as SolidEditor, A as SolidEditorContent, P as SolidNodeViewContext, z as SolidNodeViewRenderer, L as SolidRenderer, B as useEditor, F as useSolidNodeView };
+export { D as BubbleMenuWrapper, N as FloatingMenuWrapper, P as NodeViewContent, L as NodeViewWrapper, O as SolidEditor, j as SolidEditorContent, F as SolidNodeViewContext, B as SolidNodeViewRenderer, R as SolidRenderer, V as useEditor, I as useSolidNodeView };

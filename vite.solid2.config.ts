@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     solid({
       include: /src2\/.*\.[jt]sx$/,
-      refresh: { disabled: true },
+      refresh: false,
     }),
     dts({
       outDir: "dist/solid2",
