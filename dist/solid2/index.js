@@ -5,7 +5,7 @@ import { nanoid as p } from "nanoid";
 import { For as m, createContext as h, createEffect as g, createMemo as _, createSignal as v, omit as y, onSettled as b, useContext as x } from "solid-js";
 import { Editor as S, NodeView as C } from "@tiptap/core";
 import { FloatingMenuPlugin as w } from "@tiptap/extension-floating-menu";
-//#region src2/ref.ts
+// src2/ref.ts
 var T = () => {
 	let e = null;
 	return [() => e, (t) => {
@@ -216,7 +216,7 @@ var T = () => {
 		return e === this.node && this.decorations === t || (this.node = e, this.decorations = t, this.updateProps({
 			node: e,
 			decorations: t
-		}), !0);
+		})), !0;
 	}
 	setSelection(e, t, n) {
 		this.options.setSelection?.(e, t, n);
@@ -251,5 +251,4 @@ var T = () => {
 		t.off("transaction", a), t.destroy();
 	}), i;
 };
-//#endregion
 export { D as BubbleMenuWrapper, N as FloatingMenuWrapper, P as NodeViewContent, L as NodeViewWrapper, O as SolidEditor, j as SolidEditorContent, F as SolidNodeViewContext, B as SolidNodeViewRenderer, R as SolidRenderer, V as useEditor, I as useSolidNodeView };
