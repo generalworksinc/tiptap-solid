@@ -48,26 +48,26 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@floating-ui/dom": "^1.6.0",
-    "@tiptap/extension-bubble-menu": "^3.0.0",
-    "@tiptap/extension-floating-menu": "^3.0.0",
-    "nanoid": "^5.0.7"
+    "@floating-ui/dom": "^1.8.0",
+    "@tiptap/extension-bubble-menu": "^3.35.0",
+    "@tiptap/extension-floating-menu": "^3.35.0",
+    "nanoid": "^6.0.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.2.4",
+    "@biomejs/biome": "^2.6.9",
     "@solidjs/vite-plugin": "3.0.1",
-    "@solidjs/web": "2.0.0",
-    "@tiptap/core": "3.30.2",
-    "@tiptap/extension-bubble-menu": "3.30.2",
-    "@tiptap/extension-floating-menu": "3.30.2",
-    "@tiptap/pm": "3.30.2",
+    "@solidjs/web": "2.0.4",
+    "@tiptap/core": "3.35.0",
+    "@tiptap/extension-bubble-menu": "3.35.0",
+    "@tiptap/extension-floating-menu": "3.35.0",
+    "@tiptap/pm": "3.35.0",
     "esbuild-plugin-solid": "^0.6.0",
-    "solid-js": "^1.8.20",
-    "solid-js-v2": "npm:solid-js@2.0.0",
-    "tsup": "^8.5.0",
-    "typescript": "^5.5.4",
-    "vite": "^8.1.5",
-    "vite-plugin-dts": "^4.5.4"
+    "solid-js": "^1.9.20",
+    "solid-js-v2": "npm:solid-js@2.0.4",
+    "tsup": "^9.0.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.8",
+    "vite-plugin-dts": "^5.1.2"
   },
   "peerDependencies": {
     "@tiptap/core": "^3.0.0",

@@ -107,4 +107,5 @@ declare const SolidNodeViewRenderer: (component: Component, options?: Partial<So
 
 declare const useEditor: (options?: Partial<EditorOptions>) => (() => SolidEditor);
 
-export { type Attrs, BubbleMenuWrapper, type BubbleMenuWrapperProps, FloatingMenuWrapper, type FloatingMenuWrapperProps, NodeViewContent, type NodeViewContentProps, NodeViewWrapper, type NodeViewWrapperProps, SolidEditor, SolidEditorContent, type SolidEditorContentProps, SolidNodeViewContext, type SolidNodeViewContextProps, type SolidNodeViewProps, SolidNodeViewRenderer, type SolidNodeViewRendererOptions, SolidRenderer, type SolidRendererOptions, useEditor, useSolidNodeView };
+export { BubbleMenuWrapper, FloatingMenuWrapper, NodeViewContent, NodeViewWrapper, SolidEditor, SolidEditorContent, SolidNodeViewContext, SolidNodeViewRenderer, SolidRenderer, useEditor, useSolidNodeView };
+export type { Attrs, BubbleMenuWrapperProps, FloatingMenuWrapperProps, NodeViewContentProps, NodeViewWrapperProps, SolidEditorContentProps, SolidNodeViewContextProps, SolidNodeViewProps, SolidNodeViewRendererOptions, SolidRendererOptions };

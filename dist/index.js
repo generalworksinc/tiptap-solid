@@ -1,4 +1,4 @@
-import { template, use, insert, effect, className, createComponent, spread, Dynamic, mergeProps, Portal } from 'solid-js/web';
+import { use, insert, effect, className, spread, createComponent, Dynamic, mergeProps, template, Portal } from 'solid-js/web';
 import { BubbleMenuPlugin } from '@tiptap/extension-bubble-menu';
 import { createContext, onMount, splitProps, createEffect, on, onCleanup, createSignal, useContext, For, createMemo } from 'solid-js';
 import { nanoid } from 'nanoid';
