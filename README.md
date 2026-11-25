@@ -2,17 +2,12 @@
 
 TipTap integration with Solid.js.
 
-Solid 1 applications use the existing package root. Solid 2 applications use
-the dedicated entry, which exposes the same public API without changing the
-Solid 1 build:
+This package supports Solid 2 only (`solid-js` 2.0.0 or later and `@solidjs/web`
+2.x). It is built with the 2.0 compiler and does not run on the 2.0.0 release
+candidates. The Solid 1 build was removed in 2.0.0; use a 1.x release for Solid 1.
 
-```ts
-import { SolidEditorContent, useEditor } from "@generalworks/tiptap-solid/solid2";
-```
-
-The Solid 2 entry needs `solid-js` 2.0.0 or later and `@solidjs/web` 2.x
-(an optional peer, so Solid 1 applications do not install it). It is built with
-the 2.0.0 compiler and does not run on the 2.0.0 release candidates.
+`@generalworks/tiptap-solid/solid2` still works and points to the same entry as the
+package root.
 
 ## Repository Information
 
@@ -23,12 +18,13 @@ This project is a fork of the original [vriteio/tiptap-solid](https://github.com
 
 - Updated to latest TipTap v3 version
 - Migrated from Tippy.js to Floating UI for menu positioning
-- Switched rollup to tsup which uses esbuild backend
+- Built with Vite and `@solidjs/vite-plugin`
+- Supports Solid 2 only (since 2.0.0)
 - Switched to npm as the main package manager
 
 ## Installation
 
-Make sure to have peer-dependencies (`solid-js`, `@tiptap/core` and `@tiptap/pm`) already installed.
+Make sure to have peer-dependencies (`solid-js`, `@solidjs/web`, `@tiptap/core` and `@tiptap/pm`) already installed.
 
 ```
 npm i https://github.com/project-opus/tiptap-solid

@@ -5,23 +5,22 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [
     solid({
-      include: /src2\/.*\.[jt]sx$/,
+      include: /src\/.*\.[jt]sx$/,
       refresh: false,
     }),
     dts({
-      outDir: "dist/solid2",
-      include: ["src2"],
-      aliasesExclude: [/^solid-js/],
+      outDir: "dist",
+      include: ["src"],
       rollupTypes: false,
       copyDtsFiles: true,
-      tsconfigPath: "tsconfig.solid2.json",
+      tsconfigPath: "tsconfig.json",
     }),
   ],
   build: {
-    outDir: "dist/solid2",
-    emptyOutDir: false,
+    outDir: "dist",
+    emptyOutDir: true,
     lib: {
-      entry: "src2/index.ts",
+      entry: "src/index.ts",
       formats: ["es"],
       fileName: () => "index.js",
     },

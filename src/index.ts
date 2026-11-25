@@ -1,6 +1,6 @@
 export * from "./bubble-menu-wrapper";
-export * from "./editor-content";
 export * from "./editor";
+export * from "./editor-content";
 export * from "./floating-menu-wrapper";
 export * from "./node-view-content";
 export * from "./node-view-wrapper";

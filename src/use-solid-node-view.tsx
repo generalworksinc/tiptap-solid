@@ -1,10 +1,14 @@
-import { SolidEditor } from "./editor";
-import { Accessor, Context, createContext, useContext } from "solid-js";
-import { NodeViewProps } from "@tiptap/core";
-import { Node as ProseMirrorNode } from "@tiptap/pm/model";
+import type { NodeViewProps } from "@tiptap/core";
+import type { Node as ProseMirrorNode } from "@tiptap/pm/model";
+import {
+  type Accessor,
+  type Context,
+  createContext,
+  useContext,
+} from "solid-js";
+import type { SolidEditor } from "./editor";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Attrs = Record<string, any>;
+type Attrs = Record<string, unknown>;
 
 interface SolidNodeViewProps<A extends Attrs = Attrs> extends NodeViewProps {
   node: ProseMirrorNode & { attrs: A };
@@ -19,8 +23,12 @@ interface SolidNodeViewContextProps<A extends Attrs = Attrs> {
 }
 
 const SolidNodeViewContext = createContext();
-const useSolidNodeView = <A extends Attrs = Attrs>(): SolidNodeViewContextProps<A> => {
-  return useContext(SolidNodeViewContext as Context<SolidNodeViewContextProps<A>>);
+const useSolidNodeView = <
+  A extends Attrs = Attrs,
+>(): SolidNodeViewContextProps<A> => {
+  return useContext(
+    SolidNodeViewContext as Context<SolidNodeViewContextProps<A>>,
+  );
 };
 
 export { SolidNodeViewContext, useSolidNodeView };

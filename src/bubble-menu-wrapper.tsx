@@ -1,11 +1,12 @@
-import { createRef } from "./ref";
+import { offset } from "@floating-ui/dom";
+import type { JSX } from "@solidjs/web";
 import {
   BubbleMenuPlugin,
-  BubbleMenuPluginProps,
+  type BubbleMenuPluginProps,
 } from "@tiptap/extension-bubble-menu";
-import { Component, JSX, onMount } from "solid-js";
 import { nanoid } from "nanoid";
-import { offset } from "@floating-ui/dom";
+import { type Component, onSettled } from "solid-js";
+import { createRef } from "./ref";
 
 type BubbleMenuWrapperProps = Omit<
   BubbleMenuPluginProps,
@@ -18,7 +19,7 @@ type BubbleMenuWrapperProps = Omit<
   tippyOptions?: {
     offset?: number | [number, number];
     placement?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 };
 
@@ -26,20 +27,34 @@ const BubbleMenuWrapper: Component<BubbleMenuWrapperProps> = (props) => {
   const [getContainer, setContainer] = createRef<HTMLDivElement>();
   const pluginKey = nanoid();
 
-  onMount(() => {
+  onSettled(() => {
     const { editor, shouldShow, tippyOptions } = props;
     const container = getContainer();
 
     if (container) {
       // Convert tippyOptions to Floating UI options for v3 compatibility
-      const floatingUIOptions = tippyOptions ? {
-        offset: tippyOptions.offset ? (Array.isArray(tippyOptions.offset) ? tippyOptions.offset[1] || 6 : tippyOptions.offset) : 6,
-        placement: tippyOptions.placement || 'top',
-        middleware: tippyOptions.offset ? [offset(Array.isArray(tippyOptions.offset) ? tippyOptions.offset[1] || 6 : tippyOptions.offset)] : [offset(6)],
-      } : {
-        offset: 6,
-        placement: 'top',
-      };
+      const floatingUIOptions = tippyOptions
+        ? {
+            offset: tippyOptions.offset
+              ? Array.isArray(tippyOptions.offset)
+                ? tippyOptions.offset[1] || 6
+                : tippyOptions.offset
+              : 6,
+            placement: tippyOptions.placement || "top",
+            middleware: tippyOptions.offset
+              ? [
+                  offset(
+                    Array.isArray(tippyOptions.offset)
+                      ? tippyOptions.offset[1] || 6
+                      : tippyOptions.offset,
+                  ),
+                ]
+              : [offset(6)],
+          }
+        : {
+            offset: 6,
+            placement: "top",
+          };
 
       editor.registerPlugin(
         BubbleMenuPlugin({
@@ -54,9 +69,13 @@ const BubbleMenuWrapper: Component<BubbleMenuWrapperProps> = (props) => {
           },
           element: container,
           ...floatingUIOptions,
-        })
+        }),
       );
+
+      return () => editor.unregisterPlugin(pluginKey);
     }
+
+    return undefined;
   });
 
   return (

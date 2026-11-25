@@ -1,20 +1,23 @@
+import { Dynamic } from "@solidjs/web";
+import {
+  type DecorationWithType,
+  NodeView,
+  type NodeViewRenderer,
+  type NodeViewRendererOptions,
+  type NodeViewRendererProps,
+} from "@tiptap/core";
+import type { Node as ProseMirrorNode } from "@tiptap/pm/model";
+import type {
+  Decoration,
+  NodeView as ProseMirrorNodeView,
+} from "@tiptap/pm/view";
+import { type Component, createMemo } from "solid-js";
+import type { SolidEditor } from "./editor";
+import { SolidRenderer } from "./solid-renderer";
 import {
   SolidNodeViewContext,
-  SolidNodeViewProps,
+  type SolidNodeViewProps,
 } from "./use-solid-node-view";
-import { SolidEditor } from "./editor";
-import { SolidRenderer } from "./solid-renderer";
-import { Decoration, NodeView as ProseMirrorNodeView } from "@tiptap/pm/view";
-import {
-  DecorationWithType,
-  NodeView,
-  NodeViewRenderer,
-  NodeViewRendererOptions,
-  NodeViewRendererProps,
-} from "@tiptap/core";
-import { Component, createMemo } from "solid-js";
-import { Dynamic } from "solid-js/web";
-import { Node as ProseMirrorNode } from "@tiptap/pm/model";
 
 interface SolidNodeViewRendererOptions extends NodeViewRendererOptions {
   setSelection:
@@ -34,7 +37,7 @@ interface SolidNodeViewRendererOptions extends NodeViewRendererOptions {
 type SetSelectionListener = (
   anchor: number,
   head: number,
-  root: Document | ShadowRoot
+  root: Document | ShadowRoot,
 ) => void;
 
 class SolidNodeView extends NodeView<
@@ -56,7 +59,7 @@ class SolidNodeView extends NodeView<
       !portalContainer.firstElementChild?.hasAttribute("data-node-view-wrapper")
     ) {
       throw new Error(
-        "Please use the NodeViewWrapper component for your node view."
+        "Please use the NodeViewWrapper component for your node view.",
       );
     }
 
@@ -83,7 +86,9 @@ class SolidNodeView extends NodeView<
       getPos: () => {
         const pos = this.getPos();
         if (pos === undefined) {
-          throw new Error('getPos returned undefined. Node view may be destroyed.');
+          throw new Error(
+            "getPos returned undefined. Node view may be destroyed.",
+          );
         }
         return pos;
       },
@@ -91,7 +96,7 @@ class SolidNodeView extends NodeView<
       deleteNode: () => this.deleteNode(),
     } as unknown as SolidNodeViewProps;
     const SolidNodeViewProvider: Component<{ state: SolidNodeViewProps }> = (
-      props
+      props,
     ) => {
       const component = createMemo(() => this.component);
       const context = {
@@ -102,9 +107,9 @@ class SolidNodeView extends NodeView<
       };
 
       return (
-        <SolidNodeViewContext.Provider value={context}>
+        <SolidNodeViewContext value={context}>
           <Dynamic component={component()} />
-        </SolidNodeViewContext.Provider>
+        </SolidNodeViewContext>
       );
     };
 
@@ -112,7 +117,7 @@ class SolidNodeView extends NodeView<
       this.contentDOMElement = null;
     } else {
       this.contentDOMElement = document.createElement(
-        this.node.isInline ? "span" : "div"
+        this.node.isInline ? "span" : "div",
       );
     }
 
@@ -141,7 +146,7 @@ class SolidNodeView extends NodeView<
 
   public update(
     node: ProseMirrorNode,
-    decorations: DecorationWithType[]
+    decorations: DecorationWithType[],
   ): boolean {
     if (node.type !== this.node.type) {
       return false;
@@ -177,7 +182,7 @@ class SolidNodeView extends NodeView<
   public setSelection(
     anchor: number,
     head: number,
-    root: Document | ShadowRoot
+    root: Document | ShadowRoot,
   ): void {
     this.options.setSelection?.(anchor, head, root);
   }
@@ -203,7 +208,7 @@ class SolidNodeView extends NodeView<
 
 const SolidNodeViewRenderer = (
   component: Component,
-  options?: Partial<SolidNodeViewRendererOptions>
+  options?: Partial<SolidNodeViewRendererOptions>,
 ): NodeViewRenderer => {
   return (props: NodeViewRendererProps) => {
     const { renderers, setRenderers } = props.editor as SolidEditor;
@@ -215,7 +220,7 @@ const SolidNodeViewRenderer = (
     return new SolidNodeView(
       component,
       props,
-      options
+      options,
     ) as unknown as ProseMirrorNodeView;
   };
 };
