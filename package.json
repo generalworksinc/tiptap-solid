@@ -1,14 +1,14 @@
 {
   "name": "@generalworks/tiptap-solid",
-  "version": "1.2.1",
-  "description": "TipTap v2 integration for Solid.js",
+  "version": "2.0.0",
+  "description": "TipTap v3 integration for Solid 2",
   "type": "module",
   "private": false,
   "sideEffects": false,
   "scripts": {
-    "build": "tsup && vite build --config vite.solid2.config.ts",
+    "build": "vite build",
     "prepublish": "bun run build",
-    "typecheck": "tsc --noEmit && tsc -p tsconfig.solid2.json --noEmit",
+    "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "lint:fix-unsafe": "biome check --write --unsafe ."
@@ -19,26 +19,19 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src",
-    "src2"
+    "src"
   ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "solid": "./dist/index.jsx",
+      "solid": "./src/index.ts",
       "default": "./dist/index.js"
     },
     "./solid2": {
-      "types": "./dist/solid2/index.d.ts",
-      "solid": "./src2/index.ts",
-      "default": "./dist/solid2/index.js"
-    },
-    "./*": {
-      "types": "./dist/*/index.d.ts",
-      "solid": "./dist/*/index.jsx",
-      "default": "./dist/*/index.js"
-    },
-    "./src/*": "./src/*"
+      "types": "./dist/index.d.ts",
+      "solid": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
   },
   "keywords": [
     "tiptap",
@@ -61,23 +54,15 @@
     "@tiptap/extension-bubble-menu": "3.35.0",
     "@tiptap/extension-floating-menu": "3.35.0",
     "@tiptap/pm": "3.35.0",
-    "esbuild-plugin-solid": "^0.6.0",
-    "solid-js": "^1.9.20",
-    "solid-js-v2": "npm:solid-js@2.0.4",
-    "tsup": "^9.0.0",
+    "solid-js": "2.0.4",
     "typescript": "^6.0.3",
     "vite": "^8.3.8",
     "vite-plugin-dts": "^5.1.2"
   },
   "peerDependencies": {
+    "@solidjs/web": "^2.0.0",
     "@tiptap/core": "^3.0.0",
     "@tiptap/pm": "^3.0.0",
-    "solid-js": ">=1.8 <2 || >=2.0.0",
-    "@solidjs/web": "^2.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@solidjs/web": {
-      "optional": true
-    }
+    "solid-js": "^2.0.0"
   }
 }

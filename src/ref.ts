@@ -7,7 +7,7 @@ const createRef = <V>(): Ref<V> => {
     () => ref,
     (value) => {
       ref = value;
-    }
+    },
   ];
 };
 

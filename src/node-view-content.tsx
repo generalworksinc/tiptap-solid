@@ -1,6 +1,6 @@
-import { Ref } from "./ref";
-import { Component, JSX, splitProps } from "solid-js";
-import { Dynamic } from "solid-js/web";
+import { Dynamic, type JSX } from "@solidjs/web";
+import { type Component, omit } from "solid-js";
+import type { Ref } from "./ref";
 
 interface NodeViewContentProps {
   [key: string]: unknown;
@@ -10,17 +10,17 @@ interface NodeViewContentProps {
 }
 
 const NodeViewContent: Component<NodeViewContentProps> = (props) => {
-  const [local, otherProps] = splitProps(props, ["ref"]);
+  const otherProps = omit(props, "ref");
 
   return (
     <Dynamic
       {...otherProps}
       component={props.as || "div"}
-      ref={local.ref ? local.ref[1] : null}
+      ref={props.ref ? props.ref[1] : null}
       data-node-view-content=""
       style={{
         ...props.style,
-        whiteSpace: "pre-wrap"
+        whiteSpace: "pre-wrap",
       }}
     />
   );
